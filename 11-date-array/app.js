@@ -1,16 +1,14 @@
-const getDoubleNumber = (number) => number < 10 && String(number).length === 1 ? `0${number}` : number;
-
-const isDay = (day) => +day >= 1 && +day <= 31;
-
-const isMonth = (month) => +month >= 1 && +month <= 12;
-
-const isYear = (year) => 1970 < year && year <= new Date().getFullYear();
-
-const setBasicSeparator = (date) => date.map(number => getDoubleNumber(number)).join('-');
-
-const getValidateDate = (date) => isDay(date[0]) && isMonth(date[1]) && isYear(date[2]) ? setBasicSeparator(date) : false;
-
 const clearDate = (dates) => {
+    const isDay = (day) => +day >= 1 && +day <= 31;
+
+    const isMonth = (month) => +month >= 1 && +month <= 12;
+
+    const isYear = (year) => 1970 < year && year <= new Date().getFullYear();
+
+    const setBasicSeparator = (date) => date.map(number => number < 10 && String(number).length === 1 ? `0${number}` : number).join('-');
+
+    const getValidateDate = (date) => isDay(date[0]) && isMonth(date[1]) && isYear(date[2]) ? setBasicSeparator(date) : false;
+
     return dates.map(date => {
         if (date.includes('.')) {
             const dateArr = date.split('.');
